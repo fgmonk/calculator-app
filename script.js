@@ -131,3 +131,21 @@ deleteButton.addEventListener('click', button => {
     calculator.delete();
     calculator.updateDisplay();
 });
+
+document.addEventListener('keydown', e => {
+    if (e.key >= 0 && e.key <= 9) {
+        calculator.appendNumber(e.key);
+    } else if (e.key === '.') {
+        calculator.appendNumber(e.key);
+    } else if (e.key === '=' || e.key === 'Enter') {
+        calculator.compute();
+        calculator.updateDisplay(); // Important to update display after compute
+    } else if (e.key === 'Backspace') {
+        calculator.delete();
+    } else if (e.key === 'Escape') {
+        calculator.clear();
+    } else if (e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/') {
+        calculator.chooseOperation(e.key); // Handled by chooseOperation
+    }
+    calculator.updateDisplay();
+});
